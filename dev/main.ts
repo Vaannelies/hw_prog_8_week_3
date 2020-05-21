@@ -1,14 +1,14 @@
 class Main {
 
     private balls : Ball[] = []
-    private basketBall : BasketBall
+    private basketball : Ball
 
     constructor() {
-        
-        this.balls.push(new EarthBall(0, window.innerWidth/2))
-        this.balls.push(new MoonBall(window.innerWidth/2, window.innerWidth))
+        console.log("Hoi");
+        this.balls.push(new Ball(0, window.innerWidth/2, new Bouncing()))
+        this.balls.push(new Ball(window.innerWidth/2, window.innerWidth, new Space()))
 
-        this.basketBall = new BasketBall(0, window.innerWidth)
+        this.basketball = new Ball(0, window.innerWidth, new Space(), "basketball")
         this.gameLoop()
     }
 
@@ -17,7 +17,16 @@ class Main {
             ball.update()
         }
 
-        this.basketBall.update()
+        this.basketball.update()
+        // if basketball is aan de linkerkant
+        if(this.basketball.x > window.innerWidth / 2) {
+            this.basketball.setBehaviour(new Space())
+        }
+
+        // else
+        else {
+            this.basketball.setBehaviour(new Bouncing())
+        }
 
         requestAnimationFrame(() => this.gameLoop())
     }
