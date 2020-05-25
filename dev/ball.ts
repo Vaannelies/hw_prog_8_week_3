@@ -58,4 +58,4 @@ class Ball extends HTMLElement{
     }
 }
 
-window.customElements.define("ball-component", Ball as any, {extends : 'template'})
+window.customElements.define("earthball-component", Ball as any)
